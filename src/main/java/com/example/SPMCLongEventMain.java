@@ -5,12 +5,11 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class SingleProducerMultiConsumerMain {
+public class SPMCLongEventMain {
 
     public static void main(String[] args) throws Exception {
         ThreadFactory threadFactory = new ThreadFactory() {
@@ -39,15 +38,10 @@ public class SingleProducerMultiConsumerMain {
 
         LongEventProducerWithTranslator producer = new LongEventProducerWithTranslator(ringBuffer);
 
-        ByteBuffer bb = ByteBuffer.allocate(8);
+        Long bb;
         for (long l = 1; l < 10; l++) {
-            bb.putLong(0, l);
+            bb = l;
             producer.onData(bb);
-
-            Thread.sleep(1000);
         }
-
-        disruptor.shutdown();
     }
-
 }

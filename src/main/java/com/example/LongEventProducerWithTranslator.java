@@ -3,8 +3,6 @@ package com.example;
 import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
 
-import java.nio.ByteBuffer;
-
 
 public class LongEventProducerWithTranslator {
 
@@ -14,10 +12,9 @@ public class LongEventProducerWithTranslator {
         this.ringBuffer = ringBuffer;
     }
 
-    private static final EventTranslatorOneArg<LongEvent, ByteBuffer> TRANSLATOR =
-            (event, sequence, bb) -> event.setValue(bb.getLong(0));
+    private static final EventTranslatorOneArg<LongEvent, Long> TRANSLATOR = (event, sequence, bb) -> event.setValue(bb);
 
-    public void onData(ByteBuffer bb) {
+    public void onData(Long bb) {
         ringBuffer.publishEvent(TRANSLATOR, bb);
     }
 }

@@ -5,13 +5,12 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
-import java.nio.ByteBuffer;
-import java.util.concurrent.*;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class SingleProducerSingleConsumerMain {
+public class SPSCLongEventMain {
 
-    private static final Translator TRANSLATOR = new Translator();
+    private static final LongEventTranslator TRANSLATOR = new LongEventTranslator();
 
     public static void main(String[] args) throws Exception {
 
@@ -39,15 +38,11 @@ public class SingleProducerSingleConsumerMain {
         // Get the ring buffer from the Disruptor to be used for publishing.
         RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
 
-        ByteBuffer bb = ByteBuffer.allocate(8);
+        Long bb;
         for (long l = 0; l < 10; l++) {
-            bb.putLong(0, l);
+            bb = l;
             ringBuffer.publishEvent(TRANSLATOR, bb);
-            Thread.sleep(100);
         }
-
-        disruptor.shutdown();
     }
-
 }
 

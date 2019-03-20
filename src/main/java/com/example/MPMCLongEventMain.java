@@ -6,13 +6,12 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class MultiProducerMultiConsumerMain {
-    private static final Translator TRANSLATOR = new Translator();
+public class MPMCLongEventMain {
+    private static final LongEventTranslator TRANSLATOR = new LongEventTranslator();
 
     public static void main(String[] args) throws Exception {
         ThreadFactory threadFactory = new ThreadFactory() {
@@ -49,16 +48,13 @@ public class MultiProducerMultiConsumerMain {
                 System.out.println(Thread.currentThread().getName());
                 RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
 
-                ByteBuffer bb = ByteBuffer.allocate(8);
+                Long bb;
                 for (long l = 0; l < 10; l++) {
-                    bb.putLong(0, l);
+                    bb = l;
                     ringBuffer.publishEvent(TRANSLATOR, bb);
                 }
 
             });
         }
-
-        es.shutdown();
-        disruptor.shutdown();
     }
 }

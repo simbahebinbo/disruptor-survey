@@ -8,7 +8,10 @@ import lombok.Data;
  * @author: simba
  */
 @Data
-public class LongEvent {
-    private long value;
+public class KLineEvent {
+
+    private String topic;
+
+    private String datas;
 }
 
