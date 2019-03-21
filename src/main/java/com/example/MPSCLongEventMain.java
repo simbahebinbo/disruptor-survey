@@ -10,6 +10,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
+// 多生产者单消费者
 public class MPSCLongEventMain {
 
     private static final LongEventTranslator TRANSLATOR = new LongEventTranslator();

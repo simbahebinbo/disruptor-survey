@@ -5,6 +5,7 @@ import com.google.common.collect.EvictingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
+//测试内存消耗
 public class SurveyMain {
 
     public static void main(String[] args) {

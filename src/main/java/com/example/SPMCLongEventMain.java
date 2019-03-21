@@ -8,7 +8,7 @@ import com.lmax.disruptor.dsl.ProducerType;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+//单生产者多消费者
 public class SPMCLongEventMain {
 
     public static void main(String[] args) throws Exception {

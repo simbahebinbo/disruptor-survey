@@ -8,6 +8,7 @@ import com.lmax.disruptor.dsl.ProducerType;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
+// 单生产者单消费者
 public class SPSCLongEventMain {
 
     private static final LongEventTranslator TRANSLATOR = new LongEventTranslator();

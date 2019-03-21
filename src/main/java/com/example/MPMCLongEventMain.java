@@ -9,7 +9,7 @@ import com.lmax.disruptor.dsl.ProducerType;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+// 多生产者多消费者
 public class MPMCLongEventMain {
     private static final LongEventTranslator TRANSLATOR = new LongEventTranslator();
 

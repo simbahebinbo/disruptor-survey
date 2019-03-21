@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 
+// 多生产者单消费者
 public class MPSCKLineEventMain {
     public static void main(String[] args) throws Exception {
         ThreadFactory threadFactory = new ThreadFactory() {
