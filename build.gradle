@@ -46,17 +46,20 @@ dependencies {
     compile 'commons-codec:commons-codec:1.11'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.51'
 
-    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
-    implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.26'
-    implementation group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.26'
-    implementation group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.26'
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+    
+
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    implementation("org.slf4j:jcl-over-slf4j:$slf4jVersion")  
+    implementation("org.slf4j:jul-to-slf4j:$slf4jVersion") 
+    implementation("org.slf4j:log4j-over-slf4j:$slf4jVersion") 
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")  
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
-    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 }
 
 wrapper {
