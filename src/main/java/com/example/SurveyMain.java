@@ -1,14 +1,14 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.common.collect.EvictingQueue;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
 public class SurveyMain {
 
     public static void main(String[] args) {
-        ConcurrentHashMap<String, List<KlineVO>> testMap = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, EvictingQueue<KlineVO>> testMap = new ConcurrentHashMap<>();
 
         long start = 0;
         long end = 0;
@@ -17,7 +17,7 @@ public class SurveyMain {
         start = Runtime.getRuntime().freeMemory();
         IntStream.range(0, 4000).forEach(i -> {
             String topic = "market.eosusdt.kline.1min" + i;
-            List<KlineVO> datas = new ArrayList<>();
+            EvictingQueue<KlineVO> datas = EvictingQueue.create(2000);
             KlineVO data = new KlineVO();
             data.setId(1537325760L);
             data.setOpen(5.1214);
@@ -27,15 +27,17 @@ public class SurveyMain {
             data.setAmount(1947.6461);
             data.setVol(9972.01690388);
             data.setCount(18L);
-            
+
             IntStream.range(0, 2000).forEach(j -> datas.add(data));
 
             testMap.put(topic, datas);
         });
+
         // 快要计算的时,再清理一次
         System.gc();
         end = Runtime.getRuntime().freeMemory();
-        System.out.println("占内存:" + (end - start) / 1000.0 + "M");
+
+        System.out.println("占内存:" + (start - end) / 1000.0 + "M");
     }
 }
 

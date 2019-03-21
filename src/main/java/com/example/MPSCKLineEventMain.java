@@ -9,6 +9,7 @@ import com.lmax.disruptor.dsl.ProducerType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
@@ -70,14 +71,14 @@ public class MPSCKLineEventMain {
                     data.setVol(9972.01690388);
                     data.setCount(18L);
 
-                    IntStream.range(0, 1).forEach(k -> datas.add(data));
+                    Random r = new Random();
+                    IntStream.range(0, r.nextInt(2000)).forEach(k -> datas.add(data));
 
                     Gson gson = new Gson();
                     String strdata = gson.toJson(datas);
 
                     producer.onData(topic, strdata);
                 }
-
             });
         }
     }
