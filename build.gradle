@@ -38,26 +38,24 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.lmax', name: 'disruptor', version: '3.4.2'
-    compile 'com.google.code.gson:gson:2.8.5'
-    compile group: 'com.google.guava', name: 'guava', version: '27.0-jre'
-    compile 'commons-io:commons-io:2.6'
-    compile 'org.apache.commons:commons-lang3:3.8.1'
-    compile 'commons-codec:commons-codec:1.11'
-    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.51'
-
-    
+    implementation group: 'com.lmax', name: 'disruptor', version: '3.4.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation group: 'com.google.guava', name: 'guava', version: '27.0-jre'
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
+    implementation 'commons-codec:commons-codec:1.11'
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.51'
+    implementation 'org.apache.lucene:lucene-core:4.0.0'
 
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    implementation("org.slf4j:jcl-over-slf4j:$slf4jVersion")  
-    implementation("org.slf4j:jul-to-slf4j:$slf4jVersion") 
-    implementation("org.slf4j:log4j-over-slf4j:$slf4jVersion") 
-    implementation("org.slf4j:slf4j-api:$slf4jVersion")  
+    implementation("org.slf4j:jcl-over-slf4j:$slf4jVersion")
+    implementation("org.slf4j:jul-to-slf4j:$slf4jVersion")
+    implementation("org.slf4j:log4j-over-slf4j:$slf4jVersion")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 }
