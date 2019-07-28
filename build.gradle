@@ -1,7 +1,6 @@
 buildscript {
     ext {
-        lombokVersion = '1.18.4'
-        slf4jVersion = '1.7.26'
+
     }
 
     repositories {
@@ -16,20 +15,11 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'java'
 
-group 'com.example'
-version '1.0'
-
-sourceCompatibility = 1.11
-targetCompatibility = 1.11
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 // java编译的时候缺省状态下会因为中文字符而失败
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
-
-
-jar {
-    baseName = 'disruptor-survey'
-}
-
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
@@ -60,7 +50,7 @@ dependencies {
 }
 
 wrapper {
-    gradleVersion = '5.3.1'
+    gradleVersion = '5.5.1'
 }
 
 tasks.withType(JavaCompile) {
